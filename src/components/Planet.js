@@ -32,6 +32,7 @@ const Planet = () => {
     <Img
       fluid={data.placeholderImage.childImageSharp.fluid}
       className="planet"
+      id="planet"
     />
   )
 }
