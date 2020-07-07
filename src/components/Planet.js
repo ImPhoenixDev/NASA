@@ -2,6 +2,8 @@ import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 
+import "./Styles/Planet.styl"
+
 /*
  * This component is built using `gatsby-image` to automatically serve optimized
  * images with lazy loading and reduced file sizes. The image is loaded using a
@@ -26,7 +28,12 @@ const Planet = () => {
     }
   `)
 
-  return <Img fluid={data.placeholderImage.childImageSharp.fluid} />
+  return (
+    <Img
+      fluid={data.placeholderImage.childImageSharp.fluid}
+      className="planet"
+    />
+  )
 }
 
 export default Planet

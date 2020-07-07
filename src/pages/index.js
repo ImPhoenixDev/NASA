@@ -20,8 +20,8 @@ export default function IndexPage() {
           <div className="intro-title text-3xl font-bold">NASA Daily Image</div>
           <div className="intro-subtitle">Visit every day</div>
         </div>
-        <div className="image image--right col-start-2 col-end-3">
-          <Planet className="planet" />
+        <div className="image flex align-middle image--right col-start-2 col-end-3">
+          <Planet />
         </div>
       </section>
 

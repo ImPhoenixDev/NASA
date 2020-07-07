@@ -5,12 +5,15 @@
 @tailwind utilities;
 
 html
-    min-width: 640px
+    min-width: 410px
+    max-width: 100vw
+    overflow: hidden
 
 .justify-items-center 
   justify-items: center;
 
-
+.image > :first-child 
+  flex-grow: 1
 
 .image--right 
   left: calc(50%);
