@@ -1,6 +1,10 @@
 module.exports = {
   purge: [],
   theme: {
+    fontFamily: {
+      title: ["Titillium Web", "sans-serif"],
+      body: ["Open Sans", "sans-serif"],
+    },
     extend: {
       spacing: {
         "1/10vh": "10vh",
