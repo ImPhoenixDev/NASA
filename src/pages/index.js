@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState, useRef } from "react"
 import { Link } from "gatsby"
 import fetchNasa from "../components/fetchNasa"
 
@@ -7,40 +7,62 @@ import Planet from "../components/Planet"
 import SEO from "../components/seo"
 
 import "./main.styl"
+import "./animations.styl"
+import { array } from "prop-types"
 
 export default function IndexPage() {
   const API_URL =
     "https://api.nasa.gov/planetary/apod?api_key=8aYlfZeSF5ubAbeEcQDHSRCO3XQMjkdRmWRO3mdP"
+
   var data = fetchNasa(API_URL)
   console.log(data)
+  const [animableItems, setAnimableItems] = useState([])
+
+  var target = document.getElementsByClassName("waiting-animation")
+  var options = {
+    rootMargin: "0px 101% 0px 101%",
+    threshold: 1.0,
+  }
+
+  const callback = (entries, observer) => {
+    entries.forEach(item => {
+      if (item.isIntersecting) {
+        item.target.classList.remove("awaiting-animation")
+        item.target.classList.add("animated")
+      }
+    })
+  }
+
+  const observer = new IntersectionObserver(callback, options)
+
+  Array.prototype.forEach.call(animableItems, child => {
+    console.log(child)
+    observer.observe(child)
+  })
+
   useEffect(() => {
-    const target = document.getElementById("title")
-
-    var options = {
-      rootMargin: "0px",
-      threshold: 1.0,
-    }
-
-    function callback(entries, observer) {
-      console.log("callback called :)")
-    }
-
-    const observer = new IntersectionObserver(callback, options)
-
-    observer.observe(target)
-  }, [])
+    setAnimableItems(target)
+  }, [target])
 
   return (
     <Layout>
       <SEO title="Home" />
       <section className="home grid w-full h-fullvh pl-16 py-40 grid-cols-2 grid-rows-1 font-body">
-        <div className="intro grid col-start-1 col-end-2 content-center">
-          <div className="intro__title text-3xl font-bold font-title leading-none">
+        <div className="intro grid col-start-1 col-end-2 content-center waiting-animation">
+          <div
+            id="intro__title"
+            className="intro__title text-3xl font-bold font-title leading-none waiting-animation transition-all duration-700"
+          >
             NASA Daily Image
           </div>
-          <div className="intro__subtitle my-3">Visit every day 😀🌠</div>
+          <div className="intro__subtitle my-3 waiting-animation transition-all duration-700">
+            Come daily 😀🌠
+          </div>
         </div>
-        <div className="image flex align-middle image--right col-start-2 col-end-3">
+        <div
+          id="intro__image"
+          className="image flex align-middle image--right col-start-2 col-end-3 "
+        >
           <Planet />
         </div>
       </section>
@@ -48,22 +70,26 @@ export default function IndexPage() {
       {data && (
         <section className="hero grid h-full text-center bg-black text-white font-body">
           <div className="hero-general-data row-start-1 row-end-2 col-start-1 col-end-2 flex items-start  py-20 flex-col">
-            <div className="hero__title mb-16 self-center font-title text-2xl">
+            <div className="hero__title mb-16 self-center font-title text-2xl waiting-animation transition-all duration-700">
               {data.title}
             </div>
-            <div className="hero__copy my-4 ml-10">
+            <div className="hero__copy my-4 ml-10 waiting-animation transition-all duration-700">
               Copyright: {data.copyright}
               {data.copyright == undefined && "Not avaliable"}
             </div>
-            <div className="hero__date my-4 ml-10">Date: {data.date}</div>
-            <div className="btn btn-blue my-10 mx-10">Change date</div>
+            <div className="hero__date my-4 ml-10 waiting-animation transition-all duration-700">
+              Date: {data.date}
+            </div>
+            <div className="btn btn-blue my-10 mx-10 waiting-animation transition-all duration-700">
+              Change date
+            </div>
           </div>
           <img
             src={data.url}
             alt={data.title}
-            className="hero__image row-start-2 row-end-3  col-start-1 col-end-2 px-10 rounded-sm"
+            className="hero__image row-start-2 row-end-3 col-start-1 col-end-2 px-10 rounded-sm waiting-animation transition-all duration-700 "
           />
-          <div className="hero__desc row-start-3 row-end-4 col-start-1 col-end-2 flex text-left mx-10 my-24 leading-snug">
+          <div className="hero__desc row-start-3 row-end-4 col-start-1 col-end-2 flex text-left mx-10 my-24 leading-snug waiting-animation transition-all duration-700">
             {data.explanation}
           </div>
         </section>
