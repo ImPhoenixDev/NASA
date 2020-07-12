@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useRef } from "react"
-import { Link } from "gatsby"
+import React, { useEffect, useState } from "react"
+import { document, window } from "browser-monads"
 import fetchNasa from "../components/fetchNasa"
 
 import Layout from "../components/layout"
@@ -8,17 +8,17 @@ import SEO from "../components/seo"
 
 import "./main.styl"
 import "./animations.styl"
-import { array } from "prop-types"
 
 export default function IndexPage() {
   const API_URL =
-    "https://api.nasa.gov/planetary/apod?api_key=8aYlfZeSF5ubAbeEcQDHSRCO3XQMjkdRmWRO3mdP"
+    "https://api.nasa.gov/planetary/apod?api_key=8aYlfZeSF5ubAbeEcQDHSRCO3XQMjkdRmWRO3mdP&date=2020-07-11"
 
   var data = fetchNasa(API_URL)
-  console.log(data)
+
   const [animableItems, setAnimableItems] = useState([])
 
   var target = document.getElementsByClassName("waiting-animation")
+
   var options = {
     rootMargin: "0px 101% 0px 101%",
     threshold: 1.0,
@@ -33,13 +33,12 @@ export default function IndexPage() {
     })
   }
 
-  const observer = new IntersectionObserver(callback, options)
+  const observer = new window.IntersectionObserver(callback, options)
 
   Array.prototype.forEach.call(animableItems, child => {
     console.log(child)
     observer.observe(child)
   })
-
   useEffect(() => {
     setAnimableItems(target)
   }, [target])
@@ -56,7 +55,10 @@ export default function IndexPage() {
             NASA Daily Image
           </div>
           <div className="intro__subtitle my-3 waiting-animation transition-all duration-700">
-            Come daily 😀🌠
+            Come daily{" "}
+            <span role="img" aria-label="smile">
+              🌠😀
+            </span>
           </div>
         </div>
         <div
@@ -75,7 +77,7 @@ export default function IndexPage() {
             </div>
             <div className="hero__copy my-4 ml-10 waiting-animation transition-all duration-700">
               Copyright: {data.copyright}
-              {data.copyright == undefined && "Not avaliable"}
+              {data.copyright === undefined && "Not avaliable"}
             </div>
             <div className="hero__date my-4 ml-10 waiting-animation transition-all duration-700">
               Date: {data.date}
