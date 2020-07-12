@@ -1,6 +1,5 @@
-import React, { useEffect, useState, useRef } from "react"
+import React, { useEffect, useState } from "react"
 import { document, window } from "browser-monads"
-import { Link } from "gatsby"
 import fetchNasa from "../components/fetchNasa"
 
 import Layout from "../components/layout"
@@ -9,7 +8,6 @@ import SEO from "../components/seo"
 
 import "./main.styl"
 import "./animations.styl"
-import { array } from "prop-types"
 
 export default function IndexPage() {
   const API_URL =
@@ -57,7 +55,10 @@ export default function IndexPage() {
             NASA Daily Image
           </div>
           <div className="intro__subtitle my-3 waiting-animation transition-all duration-700">
-            Come daily 😀🌠
+            Come daily{" "}
+            <span role="img" aria-label="smile">
+              🌠😀
+            </span>
           </div>
         </div>
         <div
@@ -76,7 +77,7 @@ export default function IndexPage() {
             </div>
             <div className="hero__copy my-4 ml-10 waiting-animation transition-all duration-700">
               Copyright: {data.copyright}
-              {data.copyright == undefined && "Not avaliable"}
+              {data.copyright === undefined && "Not avaliable"}
             </div>
             <div className="hero__date my-4 ml-10 waiting-animation transition-all duration-700">
               Date: {data.date}
