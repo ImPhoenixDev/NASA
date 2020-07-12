@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react"
+import { document, window } from "browser-monads"
 import { Link } from "gatsby"
 import fetchNasa from "../components/fetchNasa"
 
@@ -12,13 +13,14 @@ import { array } from "prop-types"
 
 export default function IndexPage() {
   const API_URL =
-    "https://api.nasa.gov/planetary/apod?api_key=8aYlfZeSF5ubAbeEcQDHSRCO3XQMjkdRmWRO3mdP"
+    "https://api.nasa.gov/planetary/apod?api_key=8aYlfZeSF5ubAbeEcQDHSRCO3XQMjkdRmWRO3mdP&date=2020-07-11"
 
   var data = fetchNasa(API_URL)
-  console.log(data)
+
   const [animableItems, setAnimableItems] = useState([])
 
   var target = document.getElementsByClassName("waiting-animation")
+
   var options = {
     rootMargin: "0px 101% 0px 101%",
     threshold: 1.0,
@@ -33,13 +35,12 @@ export default function IndexPage() {
     })
   }
 
-  const observer = new IntersectionObserver(callback, options)
+  const observer = new window.IntersectionObserver(callback, options)
 
   Array.prototype.forEach.call(animableItems, child => {
     console.log(child)
     observer.observe(child)
   })
-
   useEffect(() => {
     setAnimableItems(target)
   }, [target])
