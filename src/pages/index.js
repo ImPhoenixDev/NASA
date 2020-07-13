@@ -5,29 +5,30 @@ import fetchNasa from "../components/fetchNasa"
 import Layout from "../components/layout"
 import Planet from "../components/Planet"
 import SEO from "../components/seo"
+import Media from "../components/Media"
 
 import "./main.styl"
 import "./animations.styl"
 
 export default function IndexPage() {
   const API_URL =
-    "https://api.nasa.gov/planetary/apod?api_key=8aYlfZeSF5ubAbeEcQDHSRCO3XQMjkdRmWRO3mdP&date=2020-07-11"
+    // "https://api.nasa.gov/planetary/apod?api_key=8aYlfZeSF5ubAbeEcQDHSRCO3XQMjkdRmWRO3mdP&date=2020-05-05"
+    "https://api.nasa.gov/planetary/apod?api_key=8aYlfZeSF5ubAbeEcQDHSRCO3XQMjkdRmWRO3mdP"
 
   var data = fetchNasa(API_URL)
-
   const [animableItems, setAnimableItems] = useState([])
 
   var target = document.getElementsByClassName("waiting-animation")
 
   var options = {
-    rootMargin: "0px 101% 0px 101%",
-    threshold: 1.0,
+    rootMargin: "0px 150% 0px 100%",
+    threshold: 0.5,
   }
 
   const callback = (entries, observer) => {
     entries.forEach(item => {
       if (item.isIntersecting) {
-        item.target.classList.remove("awaiting-animation")
+        item.target.classList.remove("waiting-animation")
         item.target.classList.add("animated")
       }
     })
@@ -40,7 +41,9 @@ export default function IndexPage() {
     observer.observe(child)
   })
   useEffect(() => {
+    var target = document.getElementsByClassName("waiting-animation")
     setAnimableItems(target)
+    console.log(target)
   }, [target])
 
   return (
@@ -86,11 +89,11 @@ export default function IndexPage() {
               Change date
             </div>
           </div>
-          <img
-            src={data.url}
-            alt={data.title}
-            className="hero__image row-start-2 row-end-3 col-start-1 col-end-2 px-10 rounded-sm waiting-animation transition-all duration-700 "
-          />
+          <div className="hero__image row-start-2 row-end-3 col-start-1 col-end-2 mx-10 rounded-sm overflow-hidden waiting-animation transition-all duration-700">
+            {data.media_type && (
+              <Media type={data.media_type} url={data.url} title={data.title} />
+            )}
+          </div>
           <div className="hero__desc row-start-3 row-end-4 col-start-1 col-end-2 flex text-left mx-10 my-24 leading-snug waiting-animation transition-all duration-700">
             {data.explanation}
           </div>
