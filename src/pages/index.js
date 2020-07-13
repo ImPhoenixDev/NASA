@@ -12,7 +12,6 @@ import "./animations.styl"
 
 export default function IndexPage() {
   const API_URL =
-    // "https://api.nasa.gov/planetary/apod?api_key=8aYlfZeSF5ubAbeEcQDHSRCO3XQMjkdRmWRO3mdP&date=2020-05-05"
     "https://api.nasa.gov/planetary/apod?api_key=8aYlfZeSF5ubAbeEcQDHSRCO3XQMjkdRmWRO3mdP"
 
   var data = fetchNasa(API_URL)
@@ -37,13 +36,11 @@ export default function IndexPage() {
   const observer = new window.IntersectionObserver(callback, options)
 
   Array.prototype.forEach.call(animableItems, child => {
-    console.log(child)
     observer.observe(child)
   })
   useEffect(() => {
     var target = document.getElementsByClassName("waiting-animation")
     setAnimableItems(target)
-    console.log(target)
   }, [target])
 
   return (
@@ -71,6 +68,7 @@ export default function IndexPage() {
           <Planet />
         </div>
       </section>
+      <section className="about grid w-full"></section>
 
       {data && (
         <section className="hero grid h-full text-center bg-black text-white font-body">
