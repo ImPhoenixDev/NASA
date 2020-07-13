@@ -9,6 +9,7 @@ import Media from "../components/Media"
 
 import "./main.styl"
 import "./animations.styl"
+import About from "../components/About"
 
 export default function IndexPage() {
   const API_URL =
@@ -54,12 +55,6 @@ export default function IndexPage() {
           >
             NASA Daily Image
           </div>
-          <div className="intro__subtitle my-3 waiting-animation transition-all duration-700">
-            Come daily{" "}
-            <span role="img" aria-label="smile">
-              🌠😀
-            </span>
-          </div>
         </div>
         <div
           id="intro__image"
@@ -68,8 +63,7 @@ export default function IndexPage() {
           <Planet />
         </div>
       </section>
-      <section className="about grid w-full"></section>
-
+      <About />
       {data && (
         <section className="hero grid h-full text-center bg-black text-white font-body">
           <div className="hero-general-data row-start-1 row-end-2 col-start-1 col-end-2 flex items-start  py-20 flex-col">
