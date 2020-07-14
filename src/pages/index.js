@@ -71,14 +71,19 @@ export default function IndexPage() {
               {data.title}
             </div>
             <div className="hero__copy my-4 ml-10 waiting-animation transition-all duration-700">
-              Copyright: {data.copyright}
-              {data.copyright === undefined && "Not avaliable"}
+              <div class="border-l-4 border-white  p-4">
+                <p class="font-bold text-left">Copyright:</p>
+                <p>
+                  {data.copyright}
+                  {data.copyright === undefined && "Not avaliable"}
+                </p>
+              </div>
             </div>
             <div className="hero__date my-4 ml-10 waiting-animation transition-all duration-700">
-              Date: {data.date}
-            </div>
-            <div className="btn btn-blue my-10 mx-10 waiting-animation transition-all duration-700">
-              Change date
+              <div class="border-l-4 border-white p-4">
+                <p class="font-bold text-left">Date:</p>
+                <p>{data.date}</p>
+              </div>
             </div>
           </div>
           <div className="hero__image row-start-2 row-end-3 col-start-1 col-end-2 mx-10 rounded-sm overflow-hidden waiting-animation transition-all duration-700">
