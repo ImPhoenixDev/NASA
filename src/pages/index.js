@@ -22,7 +22,7 @@ export default function IndexPage() {
 
   var options = {
     rootMargin: "0px 150% 0px 100%",
-    threshold: 0.3,
+    threshold: 0.5,
   }
 
   const callback = (entries, observer) => {
@@ -31,10 +31,6 @@ export default function IndexPage() {
       if (item.isIntersecting) {
         item.target.classList.remove("waiting-animation")
         item.target.classList.add("animated")
-      }
-      if (item.isIntersecting === false) {
-        item.target.classList.add("waiting-animation")
-        item.target.classList.remove("animated")
       }
     })
   }
