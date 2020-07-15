@@ -31,6 +31,10 @@ export default function IndexPage() {
         item.target.classList.remove("waiting-animation")
         item.target.classList.add("animated")
       }
+      else {
+        item.target.classList.add("waiting-animation")
+        item.targer.classList.remove("animated")
+      }
     })
   }
 
