@@ -66,8 +66,13 @@ export default function IndexPage() {
       </section>
       <About />
       {data && (
+<<<<<<< HEAD
         <section className="hero grid h-full text-center bg-black text-white font-body">
           <div className="hero-general-data row-start-1 row-end-2 col-start-1 col-end-2 flex items-start  py-20 flex-col">
+=======
+        <section className="hero grid h-full text-center bg-black text-white font-body lg:px-56">
+          <div className="hero-general-data row-start-1 row-end-2 col-start-1 col-end-2 flex items-start py-20 flex-col lg:mb-32">
+>>>>>>> responsive
             <div className="hero__title mb-16 self-center font-title text-2xl waiting-animation transition-all duration-200">
               {data.title}
             </div>
