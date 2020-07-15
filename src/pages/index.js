@@ -22,18 +22,19 @@ export default function IndexPage() {
 
   var options = {
     rootMargin: "0px 150% 0px 100%",
-    threshold: 0.5,
+    threshold: 0.3,
   }
 
   const callback = (entries, observer) => {
     entries.forEach(item => {
+      console.log(item)
       if (item.isIntersecting) {
         item.target.classList.remove("waiting-animation")
         item.target.classList.add("animated")
       }
-      else {
+      if (item.isIntersecting === false) {
         item.target.classList.add("waiting-animation")
-        item.targer.classList.remove("animated")
+        item.target.classList.remove("animated")
       }
     })
   }
@@ -55,7 +56,7 @@ export default function IndexPage() {
         <div className="intro grid col-start-1 col-end-2 content-center waiting-animation">
           <div
             id="intro__title"
-            className="intro__title text-3xl font-bold font-title leading-none waiting-animation transition-all duration-700"
+            className="intro__title text-3xl font-bold font-title leading-none waiting-animation transition-all duration-200"
           >
             NASA Daily Image
           </div>
@@ -71,10 +72,10 @@ export default function IndexPage() {
       {data && (
         <section className="hero grid h-full text-center bg-black text-white font-body">
           <div className="hero-general-data row-start-1 row-end-2 col-start-1 col-end-2 flex items-start  py-20 flex-col">
-            <div className="hero__title mb-16 self-center font-title text-2xl waiting-animation transition-all duration-700">
+            <div className="hero__title mb-16 self-center font-title text-2xl waiting-animation transition-all duration-200">
               {data.title}
             </div>
-            <div className="hero__copy my-4 ml-10 waiting-animation transition-all duration-700">
+            <div className="hero__copy my-4 ml-10 waiting-animation transition-all duration-200">
               <div class="border-l-4 border-white  p-4">
                 <p class="font-bold text-left">Copyright:</p>
                 <p>
@@ -83,19 +84,19 @@ export default function IndexPage() {
                 </p>
               </div>
             </div>
-            <div className="hero__date my-4 ml-10 waiting-animation transition-all duration-700">
+            <div className="hero__date my-4 ml-10 waiting-animation transition-all duration-200">
               <div class="border-l-4 border-white p-4">
                 <p class="font-bold text-left">Date:</p>
                 <p>{data.date}</p>
               </div>
             </div>
           </div>
-          <div className="hero__image row-start-2 row-end-3 col-start-1 col-end-2 mx-10 rounded-sm overflow-hidden waiting-animation transition-all duration-700">
+          <div className="hero__image row-start-2 row-end-3 col-start-1 col-end-2 mx-10 rounded-sm overflow-hidden waiting-animation transition-all duration-200">
             {data.media_type && (
               <Media type={data.media_type} url={data.url} title={data.title} />
             )}
           </div>
-          <div className="hero__desc row-start-3 row-end-4 col-start-1 col-end-2 flex text-left mx-10 my-24 leading-snug waiting-animation transition-all duration-700">
+          <div className="hero__desc row-start-3 row-end-4 col-start-1 col-end-2 flex text-left mx-10 my-24 leading-snug waiting-animation transition-all duration-200">
             {data.explanation}
           </div>
         </section>
