@@ -5,7 +5,7 @@ import Flatpickr from "react-flatpickr"
 import "./Styles/DateSelector.styl"
 
 export default function DateSelector() {
-  const [date, setDate] = useState([])
+  const [date, setDate] = useState(null)
 
   function handleMouseEnter(item) {
     item.target.classList.remove("placeholder-black")
@@ -17,10 +17,11 @@ export default function DateSelector() {
     item.target.classList.add("placeholder-black")
   }
 
+  console.log(date[0].getDate(), date[0].getMonth(), date[0].getFullYear())
   return (
     <Flatpickr
       data-eneable-time
-      altFormat
+      altFormat="d-m-y"
       value={date}
       onChange={date => {
         setDate(date)

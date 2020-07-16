@@ -28,7 +28,6 @@ export default function IndexPage() {
 
   const callback = (entries, observer) => {
     entries.forEach(item => {
-      console.log(item)
       if (item.isIntersecting) {
         item.target.classList.remove("waiting-animation")
         item.target.classList.add("animated")
