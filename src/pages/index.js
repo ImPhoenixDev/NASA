@@ -10,6 +10,7 @@ import Media from "../components/Media"
 import "./main.styl"
 import "./animations.styl"
 import About from "../components/About"
+import DateSelector from "../components/DateSelector"
 
 export default function IndexPage() {
   const API_URL =
@@ -52,9 +53,10 @@ export default function IndexPage() {
         <div className="intro grid col-start-1 col-end-2 content-center waiting-animation">
           <div
             id="intro__title"
-            className="intro__title text-3xl font-bold font-title leading-none waiting-animation transition-all duration-200"
+            className="intro__title flex flex-col text-3xl font-bold font-title leading-none waiting-animation transition-all duration-200"
           >
             NASA Daily Image
+            <DateSelector className="display-none" />
           </div>
         </div>
         <div
