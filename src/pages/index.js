@@ -13,12 +13,8 @@ import DateSelector from "../components/DateSelector"
 import { UrlContext } from "../context/context"
 
 export default function IndexPage() {
-  const url = useContext(UrlContext)
-  console.log(url)
-  const API_URL =
-    "https://api.nasa.gov/planetary/apod?api_key=8aYlfZeSF5ubAbeEcQDHSRCO3XQMjkdRmWRO3mdP"
-
-  var data = fetchNasa(API_URL)
+  const urlData = useContext(UrlContext)
+  var data = fetchNasa(urlData.url)
   const [animableItems, setAnimableItems] = useState([])
 
   var target = document.getElementsByClassName("waiting-animation")
@@ -43,7 +39,6 @@ export default function IndexPage() {
     observer.observe(child)
   })
   useEffect(() => {
-    var target = document.getElementsByClassName("waiting-animation")
     setAnimableItems(target)
   }, [target])
 
@@ -84,8 +79,8 @@ export default function IndexPage() {
               </div>
             </div>
             <div className="hero__date my-4 ml-10 waiting-animation transition-all duration-200">
-              <div class="border-l-4 border-white p-4">
-                <p class="font-bold text-left">Date:</p>
+              <div className="border-l-4 border-white p-4">
+                <p className="font-bold text-left">Date:</p>
                 <p>{data.date}</p>
               </div>
             </div>
