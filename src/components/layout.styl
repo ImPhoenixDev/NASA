@@ -5,12 +5,23 @@
 @tailwind utilities;
 
 html
-    min-width: 410px
+    min-width: 270px
     max-width: 100vw
     overflow-x: hidden
+    font-family: 'Open Sans', sans-serif;
 
-.justify-items-center 
-  justify-items: center;
+@variants responsive {
+
+  .justify-items-center {
+    justify-items: center;
+  }  
+
+  .justify-self-end {
+    justify-self: end
+  }
+}
+
+
 
 .image > :first-child 
   flex-grow: 1
