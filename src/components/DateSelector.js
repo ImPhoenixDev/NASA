@@ -42,7 +42,7 @@ export default function DateSelector() {
       onChange={date => {
         handleSetDate(date)
       }}
-      className="flatpickr w-56 lg:w-40 bg-transparent placeholder-black hover:bg-gray-900 text-gray-900 font-semibold hover:text-white py-2 lg:py-1 px-4 lg:my-4 border border-gray-900 hover:border-transparent rounded lg:text-sm text-center"
+      className="flatpickr my-6 w-40 md:w-56 lg:w-40 bg-transparent plajceholder-black hover:bg-gray-900 text-gray-900 font-semibold hover:text-white py-2 lg:py-1 px-4 lg:my-4 border border-gray-900 hover:border-transparent rounded lg:text-base text-center waiting-animarion transition-all duration-200"
       placeholder="Change Date"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}

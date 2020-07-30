@@ -58,8 +58,8 @@ export default function IndexPage() {
             className="intro__title flex flex-col text-3xl font-bold font-title leading-none waiting-animation transition-all duration-200"
           >
             NASA Daily Image
-            <DateSelector className="display-none" />
           </div>
+          <DateSelector />
         </div>
         <div
           id="intro__image"
