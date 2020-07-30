@@ -10,10 +10,6 @@ export default function DateSelector() {
   const [date] = useState(null)
   const urlData = useContext(UrlContext)
 
-  function handleSetDate(date) {
-    urlData.setDay(date[0].getFullYear(), date[0].getMonth(), date[0].getDate())
-  }
-
   function handleMouseEnter(item) {
     item.target.classList.remove("placeholder-black")
     item.target.classList.add("placeholder-white")
@@ -22,6 +18,18 @@ export default function DateSelector() {
   function handleMouseLeave(item) {
     item.target.classList.remove("placeholder-white")
     item.target.classList.add("placeholder-black")
+  }
+
+  var handleSetDate = () => {}
+
+  if (urlData !== undefined) {
+    handleSetDate = date => {
+      urlData.setDay(
+        date[0].getFullYear(),
+        date[0].getMonth(),
+        date[0].getDate()
+      )
+    }
   }
   useEffect(() => {
     //  console.log(date[0].getDate(), date[0].getMonth(), date[0].getFullYear())
