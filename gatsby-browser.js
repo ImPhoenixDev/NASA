@@ -5,3 +5,14 @@
  */
 
 // You can delete this file if you're not using it
+
+const React = require("react")
+const Layout = require("./src/components/layout").default
+
+const { UrlProvider } = require("./src/context/context")
+
+exports.wrapRootElement = ({ element }) => (
+  <UrlProvider>
+    <Layout>{element}</Layout>
+  </UrlProvider>
+)

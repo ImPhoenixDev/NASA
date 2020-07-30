@@ -7,6 +7,7 @@ export default function Media(props) {
     return (
       <iframe
         src={props.url}
+        title="nasa-video"
         frameborder="0"
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen="true"

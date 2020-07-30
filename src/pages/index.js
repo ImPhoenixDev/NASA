@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useContext } from "react"
 import { document, window } from "browser-monads"
 import fetchNasa from "../components/fetchNasa"
 
-import Layout from "../components/layout"
 import Planet from "../components/Planet"
 import SEO from "../components/seo"
 import Media from "../components/Media"
@@ -11,8 +10,11 @@ import "./main.styl"
 import "./animations.styl"
 import About from "../components/About"
 import DateSelector from "../components/DateSelector"
+import { UrlContext } from "../context/context"
 
 export default function IndexPage() {
+  const url = useContext(UrlContext)
+  console.log(url)
   const API_URL =
     "https://api.nasa.gov/planetary/apod?api_key=8aYlfZeSF5ubAbeEcQDHSRCO3XQMjkdRmWRO3mdP"
 
@@ -46,7 +48,7 @@ export default function IndexPage() {
   }, [target])
 
   return (
-    <Layout>
+    <>
       <SEO title="Home" />
       <section className="home grid w-full h-fullvh pl-16 py-40 grid-cols-2 grid-rows-1 font-body">
         <div className="intro grid col-start-1 col-end-2 content-center waiting-animation">
@@ -73,8 +75,8 @@ export default function IndexPage() {
               {data.title}
             </div>
             <div className="hero__copy my-4 ml-10 waiting-animation transition-all duration-200">
-              <div class="border-l-4 border-white  p-4">
-                <p class="font-bold text-left">Copyright:</p>
+              <div className="border-l-4 border-white  p-4">
+                <p className="font-bold text-left">Copyright:</p>
                 <p>
                   {data.copyright}
                   {data.copyright === undefined && "Not avaliable"}
@@ -98,6 +100,6 @@ export default function IndexPage() {
           </div>
         </section>
       )}
-    </Layout>
+    </>
   )
 }

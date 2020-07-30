@@ -1,4 +1,4 @@
-import React, { useState, createContext, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import "flatpickr/dist/themes/dark.css"
 
 import Flatpickr from "react-flatpickr"
@@ -17,9 +17,7 @@ export default function DateSelector() {
     item.target.classList.add("placeholder-black")
   }
   useEffect(() => {
-    if (date) {
-      console.log(date[0].getDate(), date[0].getMonth(), date[0].getFullYear())
-    }
+    //  console.log(date[0].getDate(), date[0].getMonth(), date[0].getFullYear())
   }, [])
   return (
     <Flatpickr
