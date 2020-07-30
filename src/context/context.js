@@ -10,9 +10,9 @@ export const UrlProvider = ({ children }) => {
   function setDay(y, m, d) {
     setUrl(base + y + "-" + m + "-" + d)
   }
-  function actualDay(y, m, d) {
-    setUrl(base + y + "-" + m + "-" + d)
-  }
+  // function actualDay(y, m, d) {
+  //  setUrl(base + y + "-" + m + "-" + d)
+  //  }
 
   return (
     <UrlContext.Provider value={{ url, setDay }}>
