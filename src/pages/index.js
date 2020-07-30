@@ -14,7 +14,9 @@ import { UrlContext } from "../context/context"
 
 export default function IndexPage() {
   const urlData = useContext(UrlContext)
-  var data = fetchNasa(urlData.url)
+  var data = fetchNasa(
+    "https://api.nasa.gov/planetary/apod?api_key=8aYlfZeSF5ubAbeEcQDHSRCO3XQMjkdRmWRO3mdP&date="
+  )
   const [animableItems, setAnimableItems] = useState([])
 
   var target = document.getElementsByClassName("waiting-animation")
